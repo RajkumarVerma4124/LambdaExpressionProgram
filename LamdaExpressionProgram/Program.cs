@@ -27,6 +27,9 @@ namespace LamdaExpressionProgram
             //Calling the method to retrieve Retrieve all record from the list for age between 13 to 18 (UC3)
             Console.WriteLine("Teenage Records Whos Age Is Between 13 & 18");
             RetrieveAllTeenageRecords(list);
+            //Calling the method to retrieve average age in the list(UC4)
+            RetrieveAverageAgeRecords(list);
+            Console.WriteLine();
             Console.ReadLine();
         }
 
@@ -65,6 +68,14 @@ namespace LamdaExpressionProgram
         {
             List<Person> teenageRecords = list.FindAll(p => p.Age >= 13 && p.Age <= 18);
             IterateOverList(teenageRecords);
+        }
+
+        //Method to retrieve average age in the list(UC4)
+        public static void RetrieveAverageAgeRecords(List<Person> list)
+        {
+            double averageAge = list.Average<Person>(p => p.Age);
+            Console.WriteLine("Average Age In Person Records Are : {0}", Math.Round(averageAge, 2));
+            Console.ReadLine();
         }
     }
 }
