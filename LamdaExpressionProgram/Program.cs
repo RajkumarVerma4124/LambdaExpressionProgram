@@ -25,7 +25,7 @@ namespace LamdaExpressionProgram
             
             //Calling the method to retrieve top two records whose age is less than sixty(UC2)
             Console.WriteLine("Top Two Records Whos Age Is Less Than 60");
-            RetrievePersonAgeLessThan60(list);
+            RetrievePersonAgeLessThanSixty(list);
             
             //Calling the method to retrieve Retrieve all record from the list for age between 13 to 18 (UC3)
             Console.WriteLine("Teenage Records Whos Age Is Between 13 & 18");
@@ -37,6 +37,10 @@ namespace LamdaExpressionProgram
             //Calling the method to check the given person name in the list(UC5)
             Console.Write("Enter The Name Of The Person : ");
             SearchPersonName(list, Console.ReadLine());
+
+            //Calling method to skip a record from the list for age is less than 60(UC6)
+            Console.WriteLine("Skipping A Record Whos Age Is Less Than 60");
+            SkipAgeLessThanSixty(list);
             Console.ReadLine();
         }
 
@@ -64,7 +68,7 @@ namespace LamdaExpressionProgram
         }
 
         //Method to retrieve top two records whose age is less than sixty(UC2)
-        public static void RetrievePersonAgeLessThan60(List<Person> list)
+        public static void RetrievePersonAgeLessThanSixty(List<Person> list)
         {
             List<Person> topTwoRecords = list.FindAll(p => p.Age < 60).OrderBy(a => a.Age).Take(2).ToList();
             IterateOverList(topTwoRecords);
@@ -96,7 +100,13 @@ namespace LamdaExpressionProgram
             }    
             else
                 Console.WriteLine("The Given Person {0} Is Not Present In The List", name);
-            Console.ReadLine();
+        }
+
+        //Method to skip a record from the list for age is less than 60(UC6)
+        public static void SkipAgeLessThanSixty(List<Person> list)
+        {
+            List<Person> greaterAge = list.FindAll(p => p.Age < 60).Skip(1).ToList();
+            IterateOverList(greaterAge);
         }
     }
 }
