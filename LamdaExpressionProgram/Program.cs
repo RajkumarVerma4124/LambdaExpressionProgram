@@ -24,6 +24,9 @@ namespace LamdaExpressionProgram
             //Calling the method to retrieve top two records whose age is less than sixty(UC2)
             Console.WriteLine("Top Two Records Whos Age Is Less Than 60");
             RetrievePersonAgeLessThan60(list);
+            //Calling the method to retrieve Retrieve all record from the list for age between 13 to 18 (UC3)
+            Console.WriteLine("Teenage Records Whos Age Is Between 13 & 18");
+            RetrieveAllTeenageRecords(list);
             Console.ReadLine();
         }
 
@@ -55,6 +58,13 @@ namespace LamdaExpressionProgram
         {
             List<Person> topTwoRecords = list.FindAll(p => p.Age < 60).OrderBy(a => a.Age).Take(2).ToList();
             IterateOverList(topTwoRecords);
+        }
+
+        //Method to retrieve Retrieve all record from the list for age between 13 to 18 (UC3)
+        public static void RetrieveAllTeenageRecords(List<Person> list)
+        {
+            List<Person> teenageRecords = list.FindAll(p => p.Age >= 13 && p.Age <= 18);
+            IterateOverList(teenageRecords);
         }
     }
 }
