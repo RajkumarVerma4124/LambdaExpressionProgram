@@ -18,18 +18,25 @@ namespace LamdaExpressionProgram
             
             //Creating the list object(UC1)
             List<Person> list = new List<Person>();
+            
             //Calling the method to add default values to the list(UC1)
             Console.WriteLine("\nPerson Details Are Listed Below");
             AddPersonDetailsIntoList(list);
+            
             //Calling the method to retrieve top two records whose age is less than sixty(UC2)
             Console.WriteLine("Top Two Records Whos Age Is Less Than 60");
             RetrievePersonAgeLessThan60(list);
+            
             //Calling the method to retrieve Retrieve all record from the list for age between 13 to 18 (UC3)
             Console.WriteLine("Teenage Records Whos Age Is Between 13 & 18");
             RetrieveAllTeenageRecords(list);
+            
             //Calling the method to retrieve average age in the list(UC4)
             RetrieveAverageAgeRecords(list);
-            Console.WriteLine();
+            
+            //Calling the method to check the given person name in the list(UC5)
+            Console.Write("Enter The Name Of The Person : ");
+            SearchPersonName(list, Console.ReadLine());
             Console.ReadLine();
         }
 
@@ -75,6 +82,20 @@ namespace LamdaExpressionProgram
         {
             double averageAge = list.Average<Person>(p => p.Age);
             Console.WriteLine("Average Age In Person Records Are : {0}", Math.Round(averageAge, 2));
+            Console.ReadLine();
+        }
+
+        //Method to check the given person name in the list(UC5)
+        public static void SearchPersonName(List<Person> list, string name)
+        {
+            var personRes = list.FindAll(p => p.Name.Equals(name));
+            if (personRes.Count() != 0)
+            {
+                Console.WriteLine("The Given Person {0} Is Present In The List", name);
+                IterateOverList(personRes);
+            }    
+            else
+                Console.WriteLine("The Given Person {0} Is Not Present In The List", name);
             Console.ReadLine();
         }
     }
