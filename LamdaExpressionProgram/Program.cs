@@ -21,6 +21,9 @@ namespace LamdaExpressionProgram
             //Calling the method to add default values to the list(UC1)
             Console.WriteLine("\nPerson Details Are Listed Below");
             AddPersonDetailsIntoList(list);
+            //Calling the method to retrieve top two records whose age is less than sixty(UC2)
+            Console.WriteLine("Top Two Records Whos Age Is Less Than 60");
+            RetrievePersonAgeLessThan60(list);
             Console.ReadLine();
         }
 
@@ -45,6 +48,13 @@ namespace LamdaExpressionProgram
                 Console.WriteLine(person);
             }
             Console.ReadLine();
+        }
+
+        //Method to retrieve top two records whose age is less than sixty(UC2)
+        public static void RetrievePersonAgeLessThan60(List<Person> list)
+        {
+            List<Person> topTwoRecords = list.FindAll(p => p.Age < 60).OrderBy(a => a.Age).Take(2).ToList();
+            IterateOverList(topTwoRecords);
         }
     }
 }
