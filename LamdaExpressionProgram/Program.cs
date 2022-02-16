@@ -35,12 +35,16 @@ namespace LamdaExpressionProgram
             RetrieveAverageAgeRecords(list);
             
             //Calling the method to check the given person name in the list(UC5)
-            Console.Write("Enter The Name Of The Person : ");
+            Console.Write("Enter The Name Of The Person To Search In List : ");
             SearchPersonName(list, Console.ReadLine());
 
             //Calling method to skip a record from the list for age is less than 60(UC6)
             Console.WriteLine("Skipping A Record Whos Age Is Less Than 60");
             SkipAgeLessThanSixty(list);
+
+            //Calling method to remove specific name from the list(UC7)
+            Console.Write("Enter The Name Of The Person To Remove From List : ");
+            RemovePersonName(list, Console.ReadLine());
             Console.ReadLine();
         }
 
@@ -99,7 +103,7 @@ namespace LamdaExpressionProgram
                 IterateOverList(personRes);
             }    
             else
-                Console.WriteLine("The Given Person {0} Is Not Present In The List", name);
+                Console.WriteLine("The Given Person {0} Is Not Present In The List\n", name);
         }
 
         //Method to skip a record from the list for age is less than 60(UC6)
@@ -107,6 +111,18 @@ namespace LamdaExpressionProgram
         {
             List<Person> greaterAge = list.FindAll(p => p.Age < 60).Skip(1).ToList();
             IterateOverList(greaterAge);
+        }
+
+        //Method to remove specific name from the list(UC7)
+        public static void RemovePersonName(List<Person> list, string name)
+        {
+            int personRes = list.RemoveAll(p => p.Name == name);
+            if (personRes != 0)
+                Console.WriteLine("The Given Person {0} Is Removed From The List", name);
+            else
+                Console.WriteLine("Failed To Remove Person Name {0} \n", name);
+            Console.WriteLine("The Remaining List After Removal Of Given Person");
+            IterateOverList(list);
         }
     }
 }
